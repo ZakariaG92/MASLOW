@@ -26,6 +26,7 @@ namespace MASLOW
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +49,12 @@ namespace MASLOW
             {
                 app.UseSpaStaticFiles();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MASLOW V1");
+            });
 
             app.UseRouting();
 
