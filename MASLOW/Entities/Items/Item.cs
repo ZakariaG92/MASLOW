@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MASLOW.Entities
+namespace MASLOW.Entities.Items
 {
 
     public abstract class Item

@@ -1,11 +1,12 @@
-﻿using MongoDB.Bson;
+﻿using MASLOW.Entities.Privileges;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MASLOW.Entities
+namespace MASLOW.Entities.Users
 {
     public class Group : IPrivileged
     {

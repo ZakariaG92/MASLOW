@@ -1,11 +1,12 @@
-﻿using MongoDB.Bson;
+﻿using MASLOW.Entities.Users;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MASLOW.Entities
+namespace MASLOW.Entities.Privileges
 {
     public abstract class Privilege<T> where T : IPrivileged
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MASLOW.Entities
+namespace MASLOW.Entities.Privileges
 {
     public interface IPrivileged
     {
