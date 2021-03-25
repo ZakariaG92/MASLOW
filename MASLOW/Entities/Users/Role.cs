@@ -1,4 +1,4 @@
-﻿using AspNetCore.Identity.MongoDbCore.Models;
+﻿using AspNetCore.Identity.Mongo.Model;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MASLOW.Entities.Users
 {
-    public class Role : MongoIdentityRole<ObjectId>
+    public class Role : MongoRole<ObjectId>
     {
     }
 }

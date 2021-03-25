@@ -1,12 +1,18 @@
+using AspNetCore.Identity.Mongo;
+using MASLOW.Data;
+using MASLOW.Entities.Users;
+using MASLOW.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Bson;
 using System.Text;
 
 namespace MASLOW
@@ -31,10 +37,54 @@ namespace MASLOW
             });
             services.AddSwaggerGen();
             services.AddMvc();
+
+            services.AddScoped<JwtHandler>();
+
+            //Add identity with Mongo database
+            var mongoDBSettings = Configuration.GetSection("MongoDBSettings");
+            services.AddIdentityMongoDbProvider<User, Role,ObjectId>(identityOptions => 
+            {
+                identityOptions.SignIn.RequireConfirmedAccount = false;
+                identityOptions.SignIn.RequireConfirmedEmail = false;
+                identityOptions.SignIn.RequireConfirmedPhoneNumber = false;
+
+                identityOptions.User.RequireUniqueEmail = true;
+
+                identityOptions.Password.RequireDigit = false;
+                identityOptions.Password.RequiredLength = 0;
+                identityOptions.Password.RequireNonAlphanumeric = false;
+                identityOptions.Password.RequireUppercase = false;
+
+            }, 
+            mongoIdentityOptions => 
+            {
+                mongoIdentityOptions.ConnectionString = $"{mongoDBSettings["ConnectionString"]}/{mongoDBSettings["Database"]}";
+            });
+
+            //Add JWT authentication
+            var jwtSettings = Configuration.GetSection("JwtSettings");
+            services.AddAuthentication(opt => 
+            { 
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; 
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; 
+            })
+                .AddJwtBearer(options => 
+            { 
+                options.TokenValidationParameters = new TokenValidationParameters 
+                { 
+                    ValidateIssuer = false, 
+                    ValidateAudience = false, 
+                    ValidateLifetime = true, 
+                    ValidateIssuerSigningKey = true, 
+                    ValidIssuer = jwtSettings["ValidIssuer"], 
+                    ValidAudience = jwtSettings["ValidAudience"], 
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecurityKey"])) 
+                }; 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -61,6 +111,10 @@ namespace MASLOW
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            IdentityDataInitializer.SeedData(userManager, roleManager);
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
