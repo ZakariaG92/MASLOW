@@ -24,10 +24,10 @@ import { UserComponent } from './user/user.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'user', component: UserComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: 'user', component: UserComponent },
+    { path: 'fetch-data', component: FetchDataComponent },
+], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
   bootstrap: [AppComponent]
