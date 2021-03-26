@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MongoDB.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MASLOW.Entities.Privileges
 {
-    public interface IPrivileged
+    public interface IPrivileged : IEntity
     {
 
     }

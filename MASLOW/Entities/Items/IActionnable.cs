@@ -1,5 +1,6 @@
 ﻿using MASLOW.Entities.Privileges;
 using MASLOW.Entities.Users;
+using MongoDB.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MASLOW.Entities
 {
-    public interface IActionnable
+    public interface IActionnable : IEntity
     {
         public List<string> Actions { get; }
 
