@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-content>
+      <h2>Bienvenue</h2>
+      <form [formGroup]="form" novalidate (ngSubmit)="login()" #loginForm >
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            formControlName="email"
+            matInput
+            name="email"
+            type="email"
+            required />
+          <mat-error>{{getErrorEmail()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Mot de passe</mat-label>
+          <input
+            formControlName="password"
+            name="password"
+            matInput
+            type="password"
+            required />
+          <mat-error>Mot de passe obligatoire</mat-error>
+        </mat-form-field>
+        <button class="submit" mat-raised-button color="primary">
+          Connexion
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>

@@ -1,0 +1,33 @@
+:host {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+  }
+  
+  h2 {
+    text-align: center;
+    margin: 30px auto !important;
+  }
+  
+  mat-card {
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  mat-form-field {
+    width: 90%;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  .submit {
+    width: 90%;
+    display: block;
+    margin: 30px auto;
+  }
+  
+  /*# sourceMappingURL=login.component.css.map */
