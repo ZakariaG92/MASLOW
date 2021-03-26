@@ -11,13 +11,13 @@ export class UserService {
     
    }
 
-   public getUser() : Observable <User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'weatherforecast');
+   public getUser() : Observable <User> {
+    return this.http.get<User>(this.baseUrl + 'weatherforecast');
    }
 }
 
 export interface User {
   id: string;
-  name: string;
+  username: string;
   email: string;
 }

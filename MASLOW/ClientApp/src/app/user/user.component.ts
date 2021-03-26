@@ -7,21 +7,14 @@ import { User, UserService } from './user.service';
 })
 export class UserComponent {
 
-  public users: User[];
-  public currentCount = 0;
+  public user: User;
 
   constructor(private userService : UserService) {
     userService.getUser().subscribe(result => {
-      this.users = result;
+      this.user = result;
     }, error => console.error(error));
 
   }
-
-  public incrementCounter() {
-    this.currentCount++;
-  }
-
-  
 
 }
 

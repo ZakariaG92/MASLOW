@@ -2,31 +2,8 @@
 
 <p>This is a simple example of an Angular component.</p>
 
-<p aria-live="polite">Current count: <strong>{{ currentCount }}</strong></p>
+      <h3>{{ user.id }}</h3>
+      <h3>{{ user.username }}</h3>
+      <h3>{{ user.email }}</h3>
 
-<button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
 
-<br>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
