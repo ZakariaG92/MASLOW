@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using System.Text;
 
@@ -35,8 +36,44 @@ namespace MASLOW
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", 
+                    new OpenApiInfo() 
+                    { 
+                            Version = "v1", 
+                            Title = "MASLOW" 
+                    }
+                );
+                c.AddSecurityDefinition("Bearer",
+                    new OpenApiSecurityScheme()
+                    {
+                        In = ParameterLocation.Header,
+                        Name = "Authorization",
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "Bearer",
+                        BearerFormat = "JWT",
+                        Description = "Use /api/accounts/login to generate JWT token"
+                    }
+                );
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+                { 
+                    { 
+                        new OpenApiSecurityScheme()
+                        {
+                            Reference = new OpenApiReference()
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+            });
             services.AddMvc();
+
+
 
             services.AddScoped<JwtHandler>();
 
@@ -107,7 +144,7 @@ namespace MASLOW
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MASLOW V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MASLOW v1");
             });
 
             app.UseRouting();

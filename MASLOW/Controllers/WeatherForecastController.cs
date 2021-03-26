@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 namespace MASLOW.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/weatherforecast")]
+    [Produces("application/json")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -24,9 +26,10 @@ namespace MASLOW.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
         [Authorize]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeatherForecast))]
+        public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

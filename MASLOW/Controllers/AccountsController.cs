@@ -1,6 +1,7 @@
 ﻿using MASLOW.Entities.Users;
 using MASLOW.Models;
 using MASLOW.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +14,10 @@ using System.Threading.Tasks;
 
 namespace MASLOW.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/accounts")]
     [ApiController]
+    [Produces("application/json")]
+    [Consumes("application/json")]
     public class AccountsController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
@@ -26,8 +29,11 @@ namespace MASLOW.Controllers
             _jwtHandler = jwtHandler;
         }
 
-        [HttpPost("Login")] 
-        public async Task<IActionResult> Login(UserLoginModel userModel) 
+        [AllowAnonymous]
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(ResponseLoginModel))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseLoginModel))]
+        public async Task<ActionResult<ResponseLoginModel>> Login(UserLoginModel userModel) 
         { 
             var user = await _userManager.FindByEmailAsync(userModel.Email); 
             
@@ -36,10 +42,15 @@ namespace MASLOW.Controllers
                 var signingCredentials = _jwtHandler.GetSigningCredentials(); 
                 var claims = _jwtHandler.GetClaims(user); 
                 var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims); 
-                var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions); 
-                return Ok(token); 
+                var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                return Ok(new ResponseLoginModel()
+                {
+                    Message = "Success",
+                    Token = token,
+                    Email = user.Email
+                }) ; 
             } 
-            return Unauthorized("Invalid Authentication"); 
+            return Unauthorized(new ResponseLoginModel() { Message = "Invalid Authentication" }); 
         }
     }
 }
