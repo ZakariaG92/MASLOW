@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Entities;
 using System.Text;
 
 namespace MASLOW
@@ -77,8 +79,12 @@ namespace MASLOW
 
             services.AddScoped<JwtHandler>();
 
+            //Add mongo
+            var mongoDBSettings = Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
+
+            DB.InitAsync(mongoDBSettings.DatabaseName, MongoClientSettings.FromConnectionString(mongoDBSettings.ConnectionString)).Wait();
+
             //Add identity with Mongo database
-            var mongoDBSettings = Configuration.GetSection("MongoDBSettings");
             services.AddIdentityMongoDbProvider<User, Role,ObjectId>(identityOptions => 
             {
                 identityOptions.SignIn.RequireConfirmedAccount = false;
@@ -95,7 +101,7 @@ namespace MASLOW
             }, 
             mongoIdentityOptions => 
             {
-                mongoIdentityOptions.ConnectionString = $"{mongoDBSettings["ConnectionString"]}/{mongoDBSettings["Database"]}";
+                mongoIdentityOptions.ConnectionString = $"{mongoDBSettings.ConnectionString}/{mongoDBSettings.DatabaseName}";
             });
 
             //Add JWT authentication
