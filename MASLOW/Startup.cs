@@ -1,6 +1,7 @@
 using AspNetCore.Identity.Mongo;
 using MASLOW.Data;
 using MASLOW.Entities.Users;
+using MASLOW.Services;
 using MASLOW.Tools;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
@@ -85,6 +87,12 @@ namespace MASLOW
 
             services.AddScoped<JwtHandler>();
 
+            services.Configure<MongoDBSettings>(
+            Configuration.GetSection(nameof(MongoDBSettings)));
+
+            services.AddSingleton(sp =>
+              sp.GetRequiredService<IOptions<IMongoDBSettings>>().Value);
+
             //Add mongo
             var mongoDBSettings = Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
 
@@ -128,6 +136,8 @@ namespace MASLOW
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecurityKey"]))
                 };
             });
+
+            services.AddSingleton<MongoDatabaseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
