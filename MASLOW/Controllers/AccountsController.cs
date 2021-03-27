@@ -17,7 +17,6 @@ namespace MASLOW.Controllers
     [Route("api/accounts")]
     [ApiController]
     [Produces("application/json")]
-    [Consumes("application/json")]
     public class AccountsController : ControllerBase
     {
         private readonly UserManager<User> _userManager;

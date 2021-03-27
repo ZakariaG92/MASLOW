@@ -27,7 +27,7 @@ export class LoginService {
       password: password
     };
 
-    return this.http.post<LoginResponse>('http://localhost:5001/api/accounts/login',JSON.stringify(body))
+    return this.http.post<LoginResponse>(`${this.baseUrl}api/accounts/login`, JSON.stringify(body))
       .pipe(
         map(res => {
           if(res.token){

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -25,6 +25,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginGuard } from './shared/login.guard';
+import { LoginService } from './login/login.service';
+import { HeaderInterceptor } from './shared/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,14 +52,18 @@ import { LoginGuard } from './shared/login.guard';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-    { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [LoginGuard] },
-    { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'fetch-data', component: FetchDataComponent },
-], { relativeLinkResolution: 'legacy' }),
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [LoginGuard] },
+      { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
+      { path: 'login', component: LoginComponent },
+      { path: 'fetch-data', component: FetchDataComponent },
+    ],
+    { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
