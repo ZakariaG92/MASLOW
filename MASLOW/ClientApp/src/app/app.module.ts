@@ -23,10 +23,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginGuard } from './shared/login.guard';
 import { LoginService } from './login/login.service';
 import { HeaderInterceptor } from './shared/header.interceptor';
+import { ControlComponent } from './control/control.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { HeaderInterceptor } from './shared/header.interceptor';
     FetchDataComponent,
     UserComponent,
     ItemComponent,
-    LoginComponent
+    LoginComponent,
+    ControlComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,11 +52,13 @@ import { HeaderInterceptor } from './shared/header.interceptor';
     MatCardModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatExpansionModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [LoginGuard] },
       { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
+      { path: 'control', component: ControlComponent, canActivate: [LoginGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ],
