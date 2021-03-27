@@ -1,10 +1,10 @@
-export class Auth {
+export class Login {
     auth: boolean;
     message: string;
   }
   
-  export class AuthResponse {
-    auth: boolean;
+  export class LoginResponse {
+    email: string;
     token: string;
     message: string;
   }

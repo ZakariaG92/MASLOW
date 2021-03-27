@@ -24,6 +24,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginGuard } from './shared/login.guard';
 
 @NgModule({
   declarations: [
@@ -49,8 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-    { path: '', component: HomeComponent, pathMatch: 'full' },
-    { path: 'user', component: UserComponent },
+    { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [LoginGuard] },
+    { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'fetch-data', component: FetchDataComponent },
 ], { relativeLinkResolution: 'legacy' }),
