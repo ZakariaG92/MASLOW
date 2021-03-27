@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
-import {environment} from "../../environments/environment";
 import {Observable, of} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {Auth, AuthResponse} from "./auth.model";
-import { UserService } from '../user/user.service';
+import {Login, LoginResponse} from "./login.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,16 +21,16 @@ export class LoginService {
     
   }
 
-  logIn(email:String, password:String): Observable<Auth> {
+  logIn(email:String, password:String): Observable<Login> {
     const body = {
       email: email,
       password: password
     };
 
-    return this.http.post<AuthResponse>(this.baseUrl + '/api/login',body)
+    return this.http.post<LoginResponse>('http://localhost:5001/api/accounts/login',JSON.stringify(body))
       .pipe(
         map(res => {
-          if(res.auth){
+          if(res.token){
             //If auth is ok, save the token for api requests
             this.token = res.token;
           }
@@ -39,8 +38,8 @@ export class LoginService {
             this.token = null;
           }
 
-          const result = new Auth();
-          result.auth = res.auth;
+          const result = new Login();
+          result.auth = res.token != null;
           result.message = res.message;
           return result;
         }),
@@ -48,29 +47,25 @@ export class LoginService {
       );
   }
 
-  logOut(): Observable<Auth>{
+  logOut(): Observable<Login>{
     //Remove token disable login
     this.token = null
     this.userService.user = undefined;
 
-    const result = new Auth();
+    const result = new Login();
     result.auth = false;
     result.message = "Déconnexion réussie";
 
     return of(result);
   }
 
-  changePassword(password:string):Observable<any>{
-    return this.http
-      .post(this.baseUrl + '/api/changepassword', {password: password});
-  }
 
-  private handleError(operation: string, res?: HttpResponse<any>): (error: any) => Observable<Auth> {
-    return (error: any): Observable<Auth> => {
+  private handleError(operation: string, res?: HttpResponse<any>): (error: any) => Observable<Login> {
+    return (error: any): Observable<Login> => {
       console.log(error);
       console.log(operation + ' issue : ' + error.message);
 
-      const result = new Auth();
+      const result = new Login();
       result.auth = false;
       result.message = error.error.message || error.error ;
 

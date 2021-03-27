@@ -32,6 +32,14 @@ namespace MASLOW
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -40,11 +48,11 @@ namespace MASLOW
             });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", 
-                    new OpenApiInfo() 
-                    { 
-                            Version = "v1", 
-                            Title = "MASLOW" 
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo()
+                    {
+                        Version = "v1",
+                        Title = "MASLOW"
                     }
                 );
                 c.AddSecurityDefinition("Bearer",
@@ -58,9 +66,9 @@ namespace MASLOW
                         Description = "Use /api/accounts/login to generate JWT token"
                     }
                 );
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement 
-                { 
-                    { 
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
                         new OpenApiSecurityScheme()
                         {
                             Reference = new OpenApiReference()
@@ -85,50 +93,53 @@ namespace MASLOW
             DB.InitAsync(mongoDBSettings.DatabaseName, MongoClientSettings.FromConnectionString(mongoDBSettings.ConnectionString)).Wait();
 
             //Add identity with Mongo database
-            services.AddIdentityMongoDbProvider<User, Role,ObjectId>(identityOptions => 
-            {
-                identityOptions.SignIn.RequireConfirmedAccount = false;
-                identityOptions.SignIn.RequireConfirmedEmail = false;
-                identityOptions.SignIn.RequireConfirmedPhoneNumber = false;
+            services.AddIdentityMongoDbProvider<User, Role, ObjectId>(identityOptions =>
+             {
+                 identityOptions.SignIn.RequireConfirmedAccount = false;
+                 identityOptions.SignIn.RequireConfirmedEmail = false;
+                 identityOptions.SignIn.RequireConfirmedPhoneNumber = false;
 
-                identityOptions.User.RequireUniqueEmail = true;
+                 identityOptions.User.RequireUniqueEmail = true;
 
-                identityOptions.Password.RequireDigit = false;
-                identityOptions.Password.RequiredLength = 0;
-                identityOptions.Password.RequireNonAlphanumeric = false;
-                identityOptions.Password.RequireUppercase = false;
+                 identityOptions.Password.RequireDigit = false;
+                 identityOptions.Password.RequiredLength = 0;
+                 identityOptions.Password.RequireNonAlphanumeric = false;
+                 identityOptions.Password.RequireUppercase = false;
 
-            }, 
-            mongoIdentityOptions => 
+             },
+            mongoIdentityOptions =>
             {
                 mongoIdentityOptions.ConnectionString = $"{mongoDBSettings.ConnectionString}/{mongoDBSettings.DatabaseName}";
             });
 
             //Add JWT authentication
             var jwtSettings = Configuration.GetSection("JwtSettings");
-            services.AddAuthentication(opt => 
-            { 
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; 
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; 
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(options => 
-            { 
-                options.TokenValidationParameters = new TokenValidationParameters 
-                { 
-                    ValidateIssuer = false, 
-                    ValidateAudience = false, 
-                    ValidateLifetime = true, 
-                    ValidateIssuerSigningKey = true, 
-                    ValidIssuer = jwtSettings["ValidIssuer"], 
-                    ValidAudience = jwtSettings["ValidAudience"], 
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecurityKey"])) 
-                }; 
+                .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings["ValidIssuer"],
+                    ValidAudience = jwtSettings["ValidAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecurityKey"]))
+                };
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
+
+            app.UseCors("AllowAll");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
