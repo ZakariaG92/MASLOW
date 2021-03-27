@@ -1,6 +1,5 @@
 ﻿using MASLOW.Entities.Privileges;
 using MASLOW.Entities.Users;
-using MongoDB.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MASLOW.Entities
 {
-    public interface IActionnable : IEntity
+    public interface IActionnable
     {
-        public List<string> Actions { get; }
+        public IEnumerable<string> Actions { get; }
 
-        public List<GroupPrivilege> GroupPrivileges { get; set; }
-        public List<UserPrivilege> UserPrivileges { get; set; }
+        public IEnumerable<GroupPrivilege> GroupPrivileges { get; set; }
+        public IEnumerable<UserPrivilege> UserPrivileges { get; set; }
 
         public sealed bool CheckPrivileges(string action, User user)
         {

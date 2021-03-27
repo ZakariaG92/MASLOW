@@ -15,7 +15,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Entities;
 using System.Text;
 
 namespace MASLOW
@@ -81,8 +80,6 @@ namespace MASLOW
 
             //Add mongo
             var mongoDBSettings = Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
-
-            DB.InitAsync(mongoDBSettings.DatabaseName, MongoClientSettings.FromConnectionString(mongoDBSettings.ConnectionString)).Wait();
 
             //Add identity with Mongo database
             services.AddIdentityMongoDbProvider<User, Role,ObjectId>(identityOptions => 
