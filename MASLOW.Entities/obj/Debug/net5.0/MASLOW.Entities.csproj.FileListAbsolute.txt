@@ -1,0 +1,12 @@
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\bin\Debug\net5.0\MASLOW.Entities.deps.json
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\bin\Debug\net5.0\MASLOW.Entities.dll
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\bin\Debug\net5.0\ref\MASLOW.Entities.dll
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\bin\Debug\net5.0\MASLOW.Entities.pdb
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.csprojAssemblyReference.cache
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.GeneratedMSBuildEditorConfig.editorconfig
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.AssemblyInfoInputs.cache
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.AssemblyInfo.cs
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.csproj.CoreCompileInputs.cache
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.dll
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\ref\MASLOW.Entities.dll
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.pdb

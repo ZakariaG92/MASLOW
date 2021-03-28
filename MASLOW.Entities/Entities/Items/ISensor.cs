@@ -11,6 +11,6 @@ namespace MASLOW.Entities
 
         public IEnumerable<string> Values { get; }
 
-        public T GetValue<T>(string value, User user);
+        public string GetValue(string value);
     }
 }

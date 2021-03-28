@@ -12,13 +12,16 @@ namespace MASLOW.Entities
 {
     public class Place
     {
+        [BsonId]
+        public ObjectId Id { get; set; }
+
         public Address Address { get; set; }
 
         public IEnumerable<Item> Items { get; set; }
 
         public IEnumerable<Group> Groups { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<IUser> Users { get; set; }
     }
 
     public class Address

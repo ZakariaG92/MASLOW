@@ -91,7 +91,7 @@ namespace MASLOW
             Configuration.GetSection(nameof(MongoDBSettings)));
 
             services.AddSingleton(sp =>
-              sp.GetRequiredService<IOptions<IMongoDBSettings>>().Value);
+              sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
 
             //Add mongo
             var mongoDBSettings = Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();

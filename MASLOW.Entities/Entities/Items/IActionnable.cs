@@ -14,7 +14,7 @@ namespace MASLOW.Entities
         public IEnumerable<GroupPrivilege> GroupPrivileges { get; set; }
         public IEnumerable<UserPrivilege> UserPrivileges { get; set; }
 
-        public sealed bool CheckPrivileges(string action, User user)
+        public sealed bool CheckPrivileges(string action, IUser user)
         {
             //TODO : Check if is admin
 
@@ -72,11 +72,11 @@ namespace MASLOW.Entities
             return groupAutorization != null ? groupAutorization.Value : false;
         }
 
-        public sealed bool DoActionWithPrivileges(string action, User user)
+        public sealed bool DoActionWithPrivileges(string action, Dictionary<string, string>? payload, IUser user)
         {
-            return CheckPrivileges(action, user) ? DoAction(action, user) : false;
+            return CheckPrivileges(action, user) ? DoAction(action, payload, user) : false;
         }
 
-        internal bool DoAction(string action, User user);
+        public bool DoAction(string action, Dictionary<string, string>? payload, IUser user);
     }
 }

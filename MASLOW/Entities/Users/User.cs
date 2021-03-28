@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MASLOW.Entities.Users
 {
-    public class User : MongoUser<ObjectId>, IPrivileged
+    public class User : MongoUser<ObjectId>, IUser
     {
     }
 }

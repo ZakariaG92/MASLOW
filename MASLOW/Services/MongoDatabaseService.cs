@@ -1,4 +1,7 @@
-﻿using MASLOW.Tools;
+﻿using MASLOW.Entities.Items;
+using MASLOW.Tools;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,9 +14,14 @@ namespace MASLOW.Services
     {
         public IMongoDatabase Database { get; private set; }
 
-        public MongoDatabaseService(IMongoDBSettings mongoDBSettings)
+        public IMongoCollection<Item> Items => Database.GetCollection<Item>("Items");
+
+        public MongoDatabaseService(MongoDBSettings mongoDBSettings)
         {
             Database = new MongoClient(mongoDBSettings.ConnectionString).GetDatabase(mongoDBSettings.DatabaseName);
+
+            BsonSerializer.RegisterDiscriminatorConvention(typeof(Item), new DiscriminatorConvention());
+
         }
     }
 }

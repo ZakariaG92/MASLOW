@@ -11,7 +11,7 @@ namespace MASLOW.Entities.Privileges
     public abstract class Privilege<T> where T : IPrivileged
     {
         [BsonId]
-        public virtual string Id { get; set; }
+        public ObjectId Id { get; set; }
 
         public IActionnable Actionnable { get; set; }
 
@@ -26,7 +26,7 @@ namespace MASLOW.Entities.Privileges
 
         public Func<bool> GetActiveStatus { get; set; }
 
-        public abstract bool IsUserConserned(User currentUser);
+        public abstract bool IsUserConserned(IUser currentUser);
     }
 
     public enum PrivilegeMode
@@ -35,9 +35,9 @@ namespace MASLOW.Entities.Privileges
         DENY
     }
 
-    public class UserPrivilege : Privilege<User>
+    public class UserPrivilege : Privilege<IUser>
     {
-        public override bool IsUserConserned(User currentUser)
+        public override bool IsUserConserned(IUser currentUser)
         {
             return Privileged == currentUser;
         }
@@ -45,7 +45,7 @@ namespace MASLOW.Entities.Privileges
 
     public class GroupPrivilege : Privilege<Group>
     {
-        public override bool IsUserConserned(User currentUser)
+        public override bool IsUserConserned(IUser currentUser)
         {
             return Privileged.Users.Contains(currentUser);
         }

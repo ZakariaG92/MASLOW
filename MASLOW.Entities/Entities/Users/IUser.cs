@@ -1,19 +1,18 @@
 ﻿using MASLOW.Entities.Privileges;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MASLOW.Entities.Users
 {
-    public class Group : IPrivileged
+    public interface IUser : IPrivileged
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
-
-        public string Name { get; set; }
-
-        public IEnumerable<User> Users { get; set; }
+        ObjectId Id { get; }
+        string UserName { get; }
+        string Email { get; }
+        List<string> Roles { get; }
     }
 }
