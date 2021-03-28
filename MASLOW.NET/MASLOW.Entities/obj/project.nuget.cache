@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "5C7BattaOlGWa0FNwIpA9hv3NOq251rxpAGyVmvnyYReIzp0fUu1Dp4mk4i/gyNb0h7g2A7pgWO7LbMbCBxucg==",
+  "dgSpecHash": "SqiuF+AW6cWKI03DpoDi/xWycIlXy45o70dHOcqmDTfLGriicdp8viqlAcxinli3zaznUqCLRav9eVxYzFHnMg==",
   "success": true,
-  "projectFilePath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj",
+  "projectFilePath": "/Users/bourekkamel/Desktop/maslow/MASLOW/MASLOW.NET/MASLOW.Entities/MASLOW.Entities.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Ainorte\\.nuget\\packages\\mongodb.bson\\2.12.1\\mongodb.bson.2.12.1.nupkg.sha512",
-    "C:\\Users\\Ainorte\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+    "/Users/bourekkamel/.nuget/packages/mongodb.bson/2.12.1/mongodb.bson.2.12.1.nupkg.sha512",
+    "/Users/bourekkamel/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

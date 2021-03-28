@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { UserComponent } from './user/user.component';
 import { ItemComponent } from './item/item.component';
 import { LoginComponent } from './login/login.component';
@@ -35,7 +34,6 @@ import { ControlComponent } from './control/control.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
     UserComponent,
     ItemComponent,
     LoginComponent,
@@ -60,7 +58,6 @@ import { ControlComponent } from './control/control.component';
       { path: 'user', component: UserComponent, canActivate: [LoginGuard] },
       { path: 'control', component: ControlComponent, canActivate: [LoginGuard] },
       { path: 'login', component: LoginComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
     ],
     { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule
