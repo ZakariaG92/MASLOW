@@ -86,31 +86,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ainorte\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/Users/bourekkamel/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj",
+      "projectUniqueName": "/Users/bourekkamel/Desktop/maslow/MASLOW/MASLOW.Entities/MASLOW.Entities.csproj",
       "projectName": "MASLOW.Entities",
-      "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj",
-      "packagesPath": "C:\\Users\\Ainorte\\.nuget\\packages\\",
-      "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\obj\\",
+      "projectPath": "/Users/bourekkamel/Desktop/maslow/MASLOW/MASLOW.Entities/MASLOW.Entities.csproj",
+      "packagesPath": "/Users/bourekkamel/.nuget/packages/",
+      "outputPath": "/Users/bourekkamel/Desktop/maslow/MASLOW/MASLOW.Entities/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Ainorte\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/Users/bourekkamel/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -149,7 +142,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }
