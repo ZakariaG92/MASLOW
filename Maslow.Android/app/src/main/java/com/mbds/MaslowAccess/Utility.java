@@ -4,6 +4,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
@@ -25,7 +26,7 @@ import com.squareup.okhttp.Response;
 
 public class Utility {
 
-
+    public static  final String BASE_URL = "https://3f350e6571bf.ngrok.io/";
     public static String get(String urlParam) throws Exception {
 
         URI uri = new URI(urlParam);
@@ -62,6 +63,8 @@ public class Utility {
             = MediaType.parse("application/json; charset=utf-8");
 
 public  static String postApi(String url, String json) throws IOException{
+
+
     OkHttpClient client = new OkHttpClient();
     RequestBody body = RequestBody.create(JSON, json);
     Request request = new Request.Builder()
@@ -71,4 +74,19 @@ public  static String postApi(String url, String json) throws IOException{
     Response response = client.newCall(request).execute();
     return response.body().string();
 }
+
+    public  static String postApiWithToken(String url, String json, String token) throws IOException{
+
+
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization","Bearer "+token)
+                .addHeader("Content-Type","application/json")
+                .post(body)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
 }

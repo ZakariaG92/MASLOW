@@ -21,7 +21,12 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+
+import static com.mbds.MaslowAccess.Utility.*;
 
 public class ScannedBarcodeActivity extends AppCompatActivity {
 
@@ -51,10 +56,19 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            Gson gson = new Gson();
-                            String dataJson= gson.toJson(txtBarcodeValue.getText().toString());
-                            String response =    Utility.postApi("http://dff162556487.ngrok.io/api/accounts/login",dataJson);
+
+                            String dataJson= txtBarcodeValue.getText().toString();
+                            String userTokenString =    Utility.postApi(Utility.BASE_URL+"api/accounts/login",dataJson);
+                            JSONObject userTokenJson = new JSONObject(userTokenString);
+                            String tokenString = userTokenJson.getString("token");
+                            String itemToOpen ="{\"itemId\":\"605fa448b4628a5ab5df2c9e\",\"action\":\"Open\"}";
+                            String responseLocker = Utility.postApiWithToken(BASE_URL+"api/actions",itemToOpen,tokenString);
+
+
                             String a = "";
+
+
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -139,6 +153,15 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                                 txtBarcodeValue.setText(intentData);
 
 
+                            try {
+                                openDoor(txtBarcodeValue.getText().toString());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
                         }
                     });
 
@@ -162,5 +185,31 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
 
     }
 
+
+    private static void openDoor(final String dataJsonString) throws IOException, JSONException {
+
+        Thread thread = new Thread() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void run() {
+                try {
+
+                    String userTokenString =    Utility.postApi(Utility.BASE_URL+"api/accounts/login",dataJsonString);
+                    JSONObject userTokenJson = new JSONObject(userTokenString);
+                    String tokenString = userTokenJson.getString("token");
+                    String itemToOpen ="{\"itemId\":\"605fa448b4628a5ab5df2c9e\",\"action\":\"Open\"}";
+                    String responseLocker = Utility.postApiWithToken(BASE_URL+"api/actions",itemToOpen,tokenString);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
+
+    }
 
 }

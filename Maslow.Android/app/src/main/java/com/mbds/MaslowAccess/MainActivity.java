@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
     Button  btnScanBarcode;
 
@@ -15,15 +15,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        startActivity(new Intent(MainActivity.this, ScannedBarcodeActivity.class));
     }
 
     private void initViews() {
 
         btnScanBarcode = findViewById(R.id.btnScanBarcode);
-        btnScanBarcode.setOnClickListener(this);
+      //  btnScanBarcode.setOnClickListener(this);
     }
 
-    @Override
+ /*   @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
@@ -34,4 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+  */
 }
