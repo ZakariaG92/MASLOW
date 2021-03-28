@@ -141,13 +141,14 @@ namespace MASLOW
             });
 
             services.AddSingleton<MongoDatabaseService>();
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<User> userManager, RoleManager<Role> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<User> userManager, RoleManager<Role> roleManager, MongoDatabaseService mongoDatabaseService)
         {
+
+            new MongoDataInitializer(mongoDatabaseService).SeedData();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

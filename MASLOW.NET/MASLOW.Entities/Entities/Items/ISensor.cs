@@ -9,7 +9,7 @@ namespace MASLOW.Entities
 {
     public interface ISensor { 
 
-        public IEnumerable<string> Values { get; }
+        public List<string> Values { get; }
 
         public string GetValue(string value);
     }

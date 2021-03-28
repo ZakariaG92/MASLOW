@@ -8,6 +8,7 @@ using MASLOW.Entities;
 using MASLOW.Entities.Privileges;
 using MASLOW.Entities.Users;
 using System.Text.Json.Serialization;
+using MASLOW.Entities.Entities.Items;
 
 namespace MASLOW.Entities.Items
 {
@@ -20,14 +21,17 @@ namespace MASLOW.Entities.Items
         public string Name { get; set; }
 
         public Dictionary<string, string> Payload { get; set; }
-        public abstract IEnumerable<string> Actions { get; }
+
+        public abstract Dictionary<string, DataType> ExpectedPayload { get; }
+
+        public abstract List<string> Actions { get; }
 
         [JsonIgnore]
-        public IEnumerable<GroupPrivilege> GroupPrivileges { get; set; }
+        public List<GroupPrivilege> GroupPrivileges { get; set; }
         [JsonIgnore]
-        public IEnumerable<UserPrivilege> UserPrivileges { get; set; }
+        public List<UserPrivilege> UserPrivileges { get; set; }
 
-        public abstract IEnumerable<string> Values { get; }
+        public abstract List<string> Values { get; }
 
         public abstract bool DoAction(string action, Dictionary<string, string>? payload, IUser user);
         public abstract string GetValue(string value);

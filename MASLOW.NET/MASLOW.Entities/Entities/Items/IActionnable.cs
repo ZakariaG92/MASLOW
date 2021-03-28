@@ -9,10 +9,10 @@ namespace MASLOW.Entities
 {
     public interface IActionnable
     {
-        public IEnumerable<string> Actions { get; }
+        public List<string> Actions { get; }
 
-        public IEnumerable<GroupPrivilege> GroupPrivileges { get; set; }
-        public IEnumerable<UserPrivilege> UserPrivileges { get; set; }
+        public List<GroupPrivilege> GroupPrivileges { get; set; }
+        public List<UserPrivilege> UserPrivileges { get; set; }
 
         public sealed bool CheckPrivileges(string action, IUser user)
         {

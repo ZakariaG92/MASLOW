@@ -1,4 +1,5 @@
 ﻿using MASLOW.Entities;
+using MASLOW.Entities.Entities.Items;
 using MASLOW.Entities.Items;
 using MASLOW.Entities.Privileges;
 using MASLOW.Entities.Users;
@@ -17,20 +18,32 @@ namespace MASLOW.TheKeys
     public class TheKeysItem : Item
     {
 
-        public override IEnumerable<string> Actions => new List<string>()
+        public override List<string> Actions => new List<string>()
         {
             "Open",
             "Close"
         };
 
-        public override IEnumerable<string> Values => new List<string>()
+        public override List<string> Values => new List<string>()
         {
             "IsOpen"
         };
 
+        public override Dictionary<string, DataType> ExpectedPayload => new Dictionary<string, DataType>()
+        {
+            { "login", DataType.STRING },
+            { "password", DataType.STRING },
+            { "locker_id", DataType.INTEGER }
+        };
+
         public override string GetValue(string value)
         {
-            return "The Keys";
+            if(value == "IsOpen")
+            {
+                return CallGet(GetToken(), "get");
+            }
+
+            return "";
         }
 
         public override bool DoAction(string action, Dictionary<string, string>? payload, IUser user)
@@ -38,9 +51,9 @@ namespace MASLOW.TheKeys
             switch (action)
             {
                 case "Open" :
-                    return CallApi(GetToken(), "remote_open");
+                    return CallPost(GetToken(), "remote_open");
                 case "Close":
-                    return CallApi(GetToken(), "remote_close");
+                    return CallPost(GetToken(), "remote_close");
                 default :
                     return false;
             }
@@ -52,8 +65,8 @@ namespace MASLOW.TheKeys
             
             var formDictionary = new Dictionary<string, string>();
             formDictionary.Add("_format", "json");
-            formDictionary.Add("_username", "+33665387559");
-            formDictionary.Add("_password", "a89f5909be");
+            formDictionary.Add("_username", Payload["login"]);
+            formDictionary.Add("_password", Payload["password"]);
 
             var client = new HttpClient();
             var data = new FormUrlEncodedContent(formDictionary);
@@ -69,9 +82,29 @@ namespace MASLOW.TheKeys
             return result.access_token;
         }
 
-        private bool CallApi(string token, string action)
+        private string CallGet(string token, string action)
         {
-            var id = "7619";
+            var id = Payload["locker_id"];
+            var url = $"https://api.the-keys.fr/fr/api/v2/serrure/{action}/{id}?_format=json";
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var request = client.GetAsync(url);
+            request.Wait();
+
+            var body = request.Result.Content.ReadAsStringAsync();
+
+            body.Wait();
+
+            var result = JsonConvert.DeserializeObject<TheKeysStateModel>(body.Result);
+
+            return result.data.etat;
+        }
+
+        private bool CallPost(string token, string action)
+        {
+            var id = Payload["locker_id"];
             var url = $"https://api.the-keys.fr/fr/api/v2/serrure/{action}/{id}";
 
             var formDictionary = new Dictionary<string, string>();
