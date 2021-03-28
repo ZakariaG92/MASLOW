@@ -14,6 +14,15 @@
           "lib/netstandard2.1/MongoDB.Bson.dll": {}
         }
       },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "System.Runtime.CompilerServices.Unsafe/5.0.0": {
         "type": "package",
         "compile": {
@@ -21,6 +30,19 @@
         },
         "runtime": {
           "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        }
+      },
+      "MASLOW.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "MongoDB.Bson": "2.12.1"
+        },
+        "compile": {
+          "bin/placeholder/MASLOW.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MASLOW.Entities.dll": {}
         }
       }
     }
@@ -44,6 +66,33 @@
         "lib/netstandard2.1/MongoDB.Bson.xml",
         "mongodb.bson.2.12.1.nupkg.sha512",
         "mongodb.bson.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
     },
@@ -78,11 +127,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "MASLOW.Entities/1.0.0": {
+      "type": "project",
+      "path": "../MASLOW.Entities/MASLOW.Entities.csproj",
+      "msbuildProject": "../MASLOW.Entities/MASLOW.Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "MongoDB.Bson >= 2.12.1"
+      "MASLOW.Entities >= 1.0.0",
+      "Newtonsoft.Json >= 13.0.1"
     ]
   },
   "packageFolders": {
@@ -92,11 +147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj",
-      "projectName": "MASLOW.Entities",
-      "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj",
+      "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.TheKeys\\MASLOW.TheKeys.csproj",
+      "projectName": "MASLOW.TheKeys",
+      "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.TheKeys\\MASLOW.TheKeys.csproj",
       "packagesPath": "C:\\Users\\Ainorte\\.nuget\\packages\\",
-      "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\obj\\",
+      "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.TheKeys\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -116,7 +171,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj": {
+              "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -129,9 +188,9 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
-          "MongoDB.Bson": {
+          "Newtonsoft.Json": {
             "target": "Package",
-            "version": "[2.12.1, )"
+            "version": "[13.0.1, )"
           }
         },
         "imports": [

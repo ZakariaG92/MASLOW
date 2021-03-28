@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PxqpuAUq/4vhZS4XDuPgn0tq/8P0XuXNPMOAMTT9lHGSI9SL658yomcZoZN72FA7dX5UgzIdYqFCnVoon6U6Og==",
+  "dgSpecHash": "BcsqKMy7Eb5mHhp7IOY+N/ohjXoWGd5SV4sykCB2d0I/FJVA0f7u9k+cqXW1GtlnILBu98f+inEuAEnJ2nXX9w==",
   "success": true,
-  "projectFilePath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.TheKeys\\MASLOW.TheKeys.csproj",
+  "projectFilePath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.TheKeys\\MASLOW.TheKeys.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ainorte\\.nuget\\packages\\mongodb.bson\\2.12.1\\mongodb.bson.2.12.1.nupkg.sha512",
     "C:\\Users\\Ainorte\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",

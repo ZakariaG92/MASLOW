@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj": {}
+    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj": {}
   },
   "projects": {
-    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj": {
+    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj",
+        "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj",
         "projectName": "MASLOW.Entities",
-        "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\MASLOW.Entities.csproj",
+        "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj",
         "packagesPath": "C:\\Users\\Ainorte\\.nuget\\packages\\",
-        "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.Entities\\obj\\",
+        "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
