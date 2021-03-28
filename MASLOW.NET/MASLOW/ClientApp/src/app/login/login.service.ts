@@ -11,8 +11,7 @@ import {Login, LoginResponse} from "./login.model";
 export class LoginService {
 
   token :string = null;
-  userService: any;
-
+  
   get isLogged(): boolean {
     return this.token != null;
   }
@@ -50,8 +49,6 @@ export class LoginService {
   logOut(): Observable<Login>{
     //Remove token disable login
     this.token = null
-    this.userService.user = undefined;
-
     const result = new Login();
     result.auth = false;
     result.message = "Déconnexion réussie";
