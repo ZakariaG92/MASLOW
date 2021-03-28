@@ -20,14 +20,14 @@ namespace MASLOW.Entities.Items
         public string Name { get; set; }
 
         public Dictionary<string, string> Payload { get; set; }
-        public virtual IEnumerable<string> Actions { get; }
+        public abstract IEnumerable<string> Actions { get; }
 
         [JsonIgnore]
         public IEnumerable<GroupPrivilege> GroupPrivileges { get; set; }
         [JsonIgnore]
         public IEnumerable<UserPrivilege> UserPrivileges { get; set; }
 
-        public virtual IEnumerable<string> Values { get; }
+        public abstract IEnumerable<string> Values { get; }
 
         public abstract bool DoAction(string action, Dictionary<string, string>? payload, IUser user);
         public abstract string GetValue(string value);

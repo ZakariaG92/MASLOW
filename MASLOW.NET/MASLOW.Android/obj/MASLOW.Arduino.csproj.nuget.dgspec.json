@@ -1,0 +1,140 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Android\\MASLOW.Arduino.csproj": {}
+  },
+  "projects": {
+    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Android\\MASLOW.Arduino.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Android\\MASLOW.Arduino.csproj",
+        "projectName": "MASLOW.Arduino",
+        "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Android\\MASLOW.Arduino.csproj",
+        "packagesPath": "C:\\Users\\Ainorte\\.nuget\\packages\\",
+        "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Android\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Ainorte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj": {
+                "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[3.0.15, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj",
+        "projectName": "MASLOW.Entities",
+        "projectPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\MASLOW.Entities.csproj",
+        "packagesPath": "C:\\Users\\Ainorte\\.nuget\\packages\\",
+        "outputPath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Ainorte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[2.12.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

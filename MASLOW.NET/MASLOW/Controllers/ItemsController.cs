@@ -11,6 +11,7 @@ using MongoDB.Bson;
 using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
 using MASLOW.Models;
+using System.IO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,17 +49,22 @@ namespace MASLOW.Controllers
                 Assembly.Load(assemblyName);
             }
 
-            var result = AppDomain.CurrentDomain.GetAssemblies()
-                .Distinct()
-                .Aggregate(new List<String>(), (stack, assembly) => {
-                
-                    var types = assembly.GetTypes()
-                     .Where(t => t.IsSubclassOf(typeof(Item)) && !t.IsAbstract && t.IsClass)
-                     .Select(type => type.AssemblyQualifiedName);
+            var result = Directory
+                .GetParent(Assembly.GetExecutingAssembly().Location)
+                .GetFiles()
+                .Where(f => f.Extension == ".dll")
+                .Aggregate(new List<string>(), (stack, file) =>
+                {
+                    var types =  Assembly
+                        .LoadFile(file.FullName)
+                        .GetTypes()
+                        .Where(t => t.IsSubclassOf(typeof(Item)) && !t.IsAbstract && t.IsClass)
+                        .Select(type => type.AssemblyQualifiedName);
 
                     stack.AddRange(types);
+
                     return stack;
-            }).Distinct();
+                }).Distinct();
 
             return result;
         }
@@ -79,15 +85,21 @@ namespace MASLOW.Controllers
         [HttpPost]
         public ActionResult Post(ItemModel value)
         {
-            var item = new TheKeys.TheKeysItem()
+            try
             {
-                Name = value.Name,
-                Payload = value.Payload
-            };
+                var item = Activator.CreateInstance(Type.GetType(value.ItemType)) as Item;
 
-            _dbService.Items.InsertOne(item);
+                item.Name = value.Name;
+                item.Payload = value.Payload;
 
-            return Ok();
+                _dbService.Items.InsertOne(item);
+
+                return Ok();
+            }
+            catch(Exception e)
+            {
+                return BadRequest();
+            }   
         }
 
         // DELETE api/items/5
