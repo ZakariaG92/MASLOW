@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "WViBqPOsG5gv7wkrNHkQcOw6Cs8Ds0Bw94Fh2+HwFNlwTkTpC/L0lR/2OZVPvysgZBvAHlZ9mwu5bO2T1PLh9w==",
+  "success": true,
+  "projectFilePath": "E:\\Users\\Ainorte\\Source\\Repos\\ZakariaG92\\MASLOW\\MASLOW.NET\\MASLOW.Android\\MASLOW.Arduino.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ainorte\\.nuget\\packages\\mongodb.bson\\2.12.1\\mongodb.bson.2.12.1.nupkg.sha512",
+    "C:\\Users\\Ainorte\\.nuget\\packages\\mqttnet\\3.0.15\\mqttnet.3.0.15.nupkg.sha512",
+    "C:\\Users\\Ainorte\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
