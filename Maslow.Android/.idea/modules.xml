@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BarcodeVisionAPI.iml" filepath="$PROJECT_DIR$/BarcodeVisionAPI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BarcodeVisionAPI.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BarcodeVisionAPI.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maslow.Android.iml" filepath="$PROJECT_DIR$/.idea/modules/Maslow.Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Maslow.Android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Maslow.Android.app.iml" />
     </modules>
   </component>
 </project>
