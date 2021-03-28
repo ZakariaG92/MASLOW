@@ -27,3 +27,4 @@ E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.TheKeys\bin\Debug\net5.0\
 E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.TheKeys\bin\Debug\net5.0\MASLOW.Entities.dll
 E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.TheKeys\bin\Debug\net5.0\MASLOW.Entities.pdb
 E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.TheKeys\obj\Debug\net5.0\MASLOW.TheKeys.csproj.CopyComplete
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.TheKeys\obj\Debug\net5.0\MASLOW.TheKeys.csprojAssemblyReference.cache

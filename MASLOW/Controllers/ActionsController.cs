@@ -19,20 +19,38 @@ using MongoDB.Bson;
 
 namespace MASLOW.Controllers
 {
-    [Route("api/action")]
+    [Route("api/actions")]
     [ApiController]
-    public class ActionController : ControllerBase
+    public class ActionsController : ControllerBase
     {
         private readonly MongoDatabaseService _dbService;
         private readonly UserManager<User> _userManager;
 
-        public ActionController(MongoDatabaseService dbService, UserManager<User> userManager)
+        public ActionsController(MongoDatabaseService dbService, UserManager<User> userManager)
         {
             _dbService = dbService;
             _userManager = userManager;
         }
 
-        // POST api/action
+        // GET api/actions/5
+        [HttpGet("{id}/")]
+        [Authorize]
+        public ActionResult<IEnumerable<string>> Get(string id)
+        {
+            try
+            {
+                var filter = Builders<Item>.Filter.Eq(item => item.Id, new ObjectId(id));
+                var item = _dbService.Items.Find(filter).First();
+
+                return Ok(item.Actions);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+        // POST api/actions
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> Post(ActionModel model)
@@ -40,15 +58,14 @@ namespace MASLOW.Controllers
             try
             {
                 var filter = Builders<Item>.Filter.Eq(item => item.Id, new ObjectId(model.ItemId));
-                var item = _dbService.Items.Find(filter).First() as IActionnable;
+                var item = _dbService.Items.Find(filter).First();
 
                 if (!item.Actions.Contains(model.Action))
                 {
                     return BadRequest();
                 }
 
-                //TODO replace with DoActionWithPrivileges
-                
+                //TODO replace with DoActionWithPrivileges and real user
 
                 return item.DoAction(model.Action, model.Payload, new User()) ? Ok() : BadRequest();
             }

@@ -21,3 +21,4 @@ E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0
 E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.dll
 E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\ref\MASLOW.Entities.dll
 E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.pdb
+E:\Users\Ainorte\Source\Repos\ZakariaG92\MASLOW\MASLOW.Entities\obj\Debug\net5.0\MASLOW.Entities.csprojAssemblyReference.cache
