@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,12 +13,26 @@ export class ItemService {
   }
 
   public getItem() : Observable <Item[]> {
-   return this.http.get<Item[]>(this.baseUrl + 'weatherforecast');
+   return this.http.get<Item[]>(this.baseUrl + 'api/items');
+  }
+
+  public getSonsor(id: string, value: string) {
+    return this.http.get(this.baseUrl + 'api/sersors/'+ id +'/'+ value, {responseType : 'text'});
+  }
+
+  public doAction(itemId: string, action: string) {
+    const body = {
+      itemId: itemId,
+      action: action
+    };
+    return this.http.post(`${this.baseUrl}api/actions`, JSON.stringify(body));
   }
 }
 
 export interface Item {
   id: string;
   name: string;
-  email: string;
+  payload: object;
+  actions: string[];
+  values: string[];
 }

@@ -10,8 +10,8 @@ export class ItemComponent {
 
   public items: Item[];
 
-  constructor(private userService : ItemService) {
-    userService.getItem().subscribe(result => {
+  constructor(private itemService : ItemService) {
+    itemService.getItem().subscribe(result => {
       this.items = result;
     }, error => console.error(error));
 

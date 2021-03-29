@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginGuard } from './shared/login.guard';
 import { LoginService } from './login/login.service';
 import { HeaderInterceptor } from './shared/header.interceptor';
+import { JwtInterceptor } from './shared/jwt.interceptor';
 import { ControlComponent } from './control/control.component';
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ControlComponent } from './control/control.component';
   ],
   providers: [
     LoginService,
-    {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

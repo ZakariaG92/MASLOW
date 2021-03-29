@@ -7,8 +7,8 @@
     </mat-card-header>
 
     <mat-card-content>
-      <h1 class="kpi">25°c</h1>
-      <button mat-button color="primary" class="refresh">Actualiser</button>
+      <h1 class="kpi">{{temp}} °C</h1>
+      <button mat-button color="primary" class="refresh" (click)="getTemp()">Actualiser</button>
     </mat-card-content>
 
 </mat-card>
@@ -16,14 +16,14 @@
 <mat-card class="object">
     <mat-card-header>
         <mat-card-title>Serrure</mat-card-title>
-        <mat-card-subtitle>Serrure ouverte</mat-card-subtitle>
-        <mat-card-subtitle>Serrure fermee</mat-card-subtitle>
+        <mat-card-subtitle *ngIf = " items.length > 0 && items[0].values[0] === 'open' ">Serrure ouverte</mat-card-subtitle>
+        <mat-card-subtitle *ngIf = " items.length > 0 && items[0].values[0] === 'close' ">Serrure fermée</mat-card-subtitle>
     </mat-card-header>
 
     <img mat-card-image src="http://www.leblogdomotique.fr/wp-content/uploads/2017/12/serrure-connectee-entr-point-fort-fichet.jpg" alt="Photo de serrure">
 
     <mat-card-content>
-        <button mat-button color="primary">Open/Close</button>
+        <button mat-button color="primary" (click)="doorAction()">Open/Close</button>
     </mat-card-content>
 
 </mat-card>

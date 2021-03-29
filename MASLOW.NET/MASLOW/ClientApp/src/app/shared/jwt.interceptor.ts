@@ -10,7 +10,7 @@ import { LoginService } from '../login/login.service';
 
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class JwtInterceptor implements HttpInterceptor {
 
   constructor(private loginService: LoginService ) {}
 
