@@ -1,124 +1,84 @@
 const TuyAPI = require('tuyapi');
 
-function ThingSwitchStatus(req, res) {
+async function ThingSwitchStatus(req, res) {
 
-    
-    console.log("Changing status")
-    let thingId = req.body.id;
-    let thingKey = req.body.key;
+    try{
 
+      console.log("Changing status")
+      let thingId = req.body.id;
+      let thingKey = req.body.key;
+      let dps = req.body.dps;
+      let value = req.body.value;
+  
+  
+  
+      const device = new TuyAPI({
+          id: thingId,
+          key: thingKey,
+          issueGetOnConnect: false
+      });
 
+      await device.find();
+
+      await device.connect();
+
+      await device.set({dps: dps, set: value});
+
+      let status = await device.get({dps: dps});
+
+    var returnJson = {
+      "id": thingId,
+      "key": thingKey,
+      "status": status
+    };
+
+    console.log(returnJson);
+    return res.json(returnJson);
+
+  }catch(e){
+      console.log(e);
+      return res.status(400).json({
+        error: e.stack
+      })
+  }
+
+}
+
+async function getThingId(req, res) {
+  try{
+
+    console.log("Get status")
+    let thingId = req.params.id;
+    let thingKey = req.params.key;
+    let dps = req.params.dps;
 
     const device = new TuyAPI({
         id: thingId,
-        key: thingKey
-    });
-    let stateHasChanged = false;
-
-    // Find device on network
-    device.find().then(() => {
-        // Connect to device
-        device.connect();
+        key: thingKey,
+        issueGetOnConnect: false
     });
 
+    await device.find();
 
+    await device.connect();
 
+    let status = await device.get({dps: dps});
 
-/*
-    (async () => {
-        await device.find();
-
-        await device.connect();
-
-        let status = await device.get();
-        let old= status; 
-
-        console.log(`Current status: ${status}.`);
-
-        await device.set({ set: !status });
-
-        status = await device.get();
-
-        let newStatus= status
-
-        if (old!=newStatus){stateHasChanged=true}
-
-        console.log(`New status: ${status}.`);
-        
-        var returnJson = {
-            "id": thingId,
-            "key": thingKey,
-            "stateChanged": stateHasChanged
-        };
-    
-    
-        device.disconnect();
-        console.log(returnJson)
-        res.json(returnJson)
-
-        
-    })();
-    */
-
-    
-// Find device on network
-device.find().then(() => {
-    // Connect to device
-    device.connect();
-  });
-  
-  // Add event listeners
-  device.on('connected', () => {
-    console.log('Connected to device!');
-  });
-  
-  device.on('disconnected', () => {
-    console.log('Disconnected from device.');
-  });
-  
-  device.on('error', error => {
-    console.log('Error!', error);
-  });
-  
-  device.on('data', data => {
-    console.log('Data from device:', data);
-  
-    console.log(`Boolean status of default property: ${data.dps['1']}.`);
-  
-    // Set default property to opposite
-    if (!stateHasChanged) {
-      device.set({set: !(data.dps['1'])});
-  
-      // Otherwise we'll be stuck in an endless
-      // loop of toggling the state.
-      stateHasChanged = true;
-    }
-  });
-  
-  // Disconnect after 10 seconds
- // setTimeout(() => { device.disconnect(); }, 1000);
-
-  var returnJson = {
-    "id": thingId,
-    "key": thingKey,
-    "stateChanged": stateHasChanged
-}
-res.json(returnJson)
-
-}
-
-
-function getThingId(req, res) {
-    console.log("things id")
-    let thingId = req.params.id;
-
-    returnJson = {
-        "id": thingId,
-        "key": "key"
+    var returnJson = {
+      "id": thingId,
+      "key": thingKey,
+      "status": status
     };
 
-    console.log(returnJson)
-    res.json(returnJson)
+    console.log(returnJson);
+    return res.json(returnJson);
+
+  }catch(e){
+      console.log(e);
+      return res.status(400).json({
+        error: e.stack
+      })
+  }
 }
 
 module.exports = { ThingSwitchStatus, getThingId };

@@ -30,7 +30,7 @@ const prefix = '/api';
 app.route(prefix + '/things/switch')
     .post(client.ThingSwitchStatus)
 
-app.route(prefix + '/things/id/:id')
+app.route(prefix + '/things/:id/:key/:dps')
     .get(client.getThingId)
 
 app.listen(port, "0.0.0.0");

@@ -57,6 +57,18 @@ namespace MASLOW.Data
                             { "id_thermometer", "75fcc4da231942739d04dd56874f3bd9" },
                             { "id_light_sensor", "6b13a7131fe54e1096a7aac9ea77bb9d" }
                         }
+                    },
+
+                    new Tuya.TuyaItem()
+                    {
+                        Name = "Tuya Lamp",
+                        Payload = new Dictionary<string, string>()
+                        {
+                            {"url", "http://localhost:3000" },
+                            {"id", "bff4e48fb6b1ca7ed9xhom" },
+                            {"key", "795e59888afaa8f6" },
+                            {"dps", "20" }
+                        }
                     }
                 });
             }
