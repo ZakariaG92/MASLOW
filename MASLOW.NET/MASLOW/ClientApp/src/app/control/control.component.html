@@ -39,7 +39,7 @@
     <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/61wdHE6Qz6L._AC_SX342_.jpg" alt="Photo de serrure">
 
     <mat-card-content>
-        <button mat-button (click)="tuyaAction(items[2])" color="primary">ON/OFF</button>
+        <button mat-button [disabled]="tuyaWait" (click)="tuyaAction(items[2])" color="primary">ON/OFF</button>
     </mat-card-content>
 
 </mat-card>

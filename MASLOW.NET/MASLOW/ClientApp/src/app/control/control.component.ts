@@ -43,14 +43,17 @@ export class ControlComponent implements OnInit {
     }
 
     this.itemService.doAction(this.items[0].id, action).subscribe(result => {
-      delay(10000);
-      this.isDoorOpen(this.items[0]);
+      setTimeout(() => {
+        this.isDoorOpen(this.items[0]);
+      }, 10000);
+      
     })
   }
 
   getTemp() {
     this.itemService.getSonsor(this.items[1].id, "Temp").subscribe(result => {
       this.temp = result;
+      this.tuyaWait = false;
     })
   }
   
