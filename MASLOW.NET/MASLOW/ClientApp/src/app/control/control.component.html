@@ -31,16 +31,15 @@
 <mat-card class="object">
     <mat-card-header>
         <mat-card-title>Lampe</mat-card-title>
-        <mat-card-subtitle>Lampe allumée </mat-card-subtitle>
-        <mat-card-subtitle>Lampe éteinte </mat-card-subtitle>
-        <mat-card-subtitle>Ambiance : </mat-card-subtitle>
+        <mat-card-subtitle *ngIf = " items.length > 0 && items[2].values[0] === 'on'">Lampe allumée </mat-card-subtitle>
+        <mat-card-subtitle *ngIf = " items.length > 0 && items[2].values[0] === 'off'">Lampe éteinte </mat-card-subtitle>
         <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
 
     <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/61wdHE6Qz6L._AC_SX342_.jpg" alt="Photo de serrure">
 
     <mat-card-content>
-        <button mat-button color="primary">ON/OFF</button>
+        <button mat-button (click)="tuyaAction(items[2])" color="primary">ON/OFF</button>
     </mat-card-content>
 
 </mat-card>

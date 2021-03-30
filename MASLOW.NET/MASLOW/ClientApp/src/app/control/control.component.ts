@@ -12,6 +12,7 @@ export class ControlComponent implements OnInit {
 
   public items: Item[] = [];
   public temp: string;
+  public tuyaWait: boolean = true;
 
   constructor(private itemService : ItemService) {
     itemService.getItem().subscribe(result => {
@@ -53,6 +54,28 @@ export class ControlComponent implements OnInit {
     })
   }
   
-  
 
+  getTuyaStatus(item: Item) {
+    this.itemService.getSonsor(item.id, "IsEnabled").subscribe(result => {
+      item.values[0] = result;
+    })
+  }
+
+  tuyaAction(item: Item) {
+    if (!this.tuyaWait) {
+      this.tuyaWait = true
+      let action: string;
+      switch (item.values[0]) {
+        case "on": action = "Off";
+          break;
+        case "off": action = "On";
+          break;
+      }
+
+      this.itemService.doAction(item.id, action).subscribe(result => {
+        delay(10000);
+        this.getTuyaStatus(item);
+      })
+    }
+  }
 }

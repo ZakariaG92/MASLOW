@@ -49,7 +49,7 @@ namespace MASLOW.Tuya
         {
             if (value == "IsEnabled")
             {
-                var url = $"/api/{Payload["url"]}/{Payload["id"]}/{Payload["key"]}/{Payload["dps"]}";
+                var url = $"{Payload["url"]}/api/things/{Payload["id"]}/{Payload["key"]}/{Payload["dps"]}";
 
                 var client = new HttpClient();
 
