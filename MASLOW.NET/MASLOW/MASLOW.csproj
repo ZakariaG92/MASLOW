@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MASLOW.Android\MASLOW.Arduino.csproj" />
+    <ProjectReference Include="..\MASLOW.Arduino\MASLOW.Arduino.csproj" />
     <ProjectReference Include="..\MASLOW.Entities\MASLOW.Entities.csproj" />
     <ProjectReference Include="..\MASLOW.TheKeys\MASLOW.TheKeys.csproj" />
     <ProjectReference Include="..\MASLOW.Tuya\MASLOW.Tuya.csproj" />
