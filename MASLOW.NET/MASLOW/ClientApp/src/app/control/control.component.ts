@@ -19,6 +19,7 @@ export class ControlComponent implements OnInit {
       this.items = result;
       this.isDoorOpen(this.items[0]);
       this.getTemp();
+      this.getTuyaStatus(this.items[2])
     }, error => console.error(error));
 
   }
@@ -53,7 +54,6 @@ export class ControlComponent implements OnInit {
   getTemp() {
     this.itemService.getSonsor(this.items[1].id, "Temp").subscribe(result => {
       this.temp = result;
-      this.tuyaWait = false;
     })
   }
   
@@ -61,6 +61,7 @@ export class ControlComponent implements OnInit {
   getTuyaStatus(item: Item) {
     this.itemService.getSonsor(item.id, "IsEnabled").subscribe(result => {
       item.values[0] = result;
+      this.tuyaWait = false;
     })
   }
 

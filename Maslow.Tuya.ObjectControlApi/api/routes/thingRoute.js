@@ -26,6 +26,8 @@ async function ThingSwitchStatus(req, res) {
 
       let status = await device.get({dps: dps});
 
+      device.disconnect();
+
     var returnJson = {
       "id": thingId,
       "key": thingKey,
@@ -63,6 +65,8 @@ async function getThingId(req, res) {
     await device.connect();
 
     let status = await device.get({dps: dps});
+
+    device.disconnect();
 
     var returnJson = {
       "id": thingId,
