@@ -197,7 +197,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                     String userTokenString =    Utility.postApi(Utility.BASE_URL+"api/accounts/login",dataJsonString);
                     JSONObject userTokenJson = new JSONObject(userTokenString);
                     String tokenString = userTokenJson.getString("token");
-                    String itemToOpen ="{\"itemId\":\"605fa448b4628a5ab5df2c9e\",\"action\":\"Open\"}";
+                    String itemToOpen ="{\"itemId\":\"6062c3574c6cfcfea084fb1a\",\"action\":\"Open\"}";
                     String responseLocker = Utility.postApiWithToken(BASE_URL+"api/actions",itemToOpen,tokenString);
 
 

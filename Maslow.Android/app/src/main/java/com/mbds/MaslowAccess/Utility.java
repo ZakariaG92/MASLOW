@@ -26,7 +26,7 @@ import com.squareup.okhttp.Response;
 
 public class Utility {
 
-    public static  final String BASE_URL = "https://3f350e6571bf.ngrok.io/";
+    public static  final String BASE_URL = "https://5a7353fcbb89.ngrok.io/";
     public static String get(String urlParam) throws Exception {
 
         URI uri = new URI(urlParam);
